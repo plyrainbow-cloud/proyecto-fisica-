@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Las tres leyes de Newton - Proyecto de física</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#10b981',
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        /* Ajuste para que el menú fijo no tape los títulos al hacer clic */
+        section { scroll-margin-top: 80px; }
+        .fade-in { animation: fadeIn 0.5s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-100 antialiased selection:bg-blue-500 selection:text-white h-screen flex flex-col overflow-hidden">
+
+    <!-- BARRA DE NAVEGACIÓN FIJA -->
+    <nav class="bg-slate-900/95 border-b border-slate-800 shadow-lg z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- LOGO -->
+                <div class="flex items-center gap-2 cursor-pointer" onclick="navegar('inicio')">
+                    <span class="font-bold text-white text-lg tracking-tight hover:text-blue-500 transition">Leyes de Newton</span>
+                </div>
+                
+                <!-- Menú Escritorio -->
+                <div class="hidden md:flex space-x-1">
+                    <button onclick="navegar('inicio')" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-slate-800 hover:text-white transition text-slate-300">Inicio</button>
+                    <button onclick="navegar('ley1')" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-blue-900/30 hover:text-blue-400 transition text-slate-300">1ª ley</button>
+                    <button onclick="navegar('ley2')" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-green-900/30 hover:text-green-400 transition text-slate-300">2ª ley</button>
+                    <button onclick="navegar('ley3')" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-purple-900/30 hover:text-purple-400 transition text-slate-300">3ª ley</button>
+                    <button onclick="navegar('conclusiones')" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-slate-700 hover:text-white transition text-slate-300">Conclusiones</button>
+                    <button onclick="navegar('referencias')" class="ml-4 px-4 py-2 rounded-md text-sm font-bold bg-slate-100 text-slate-900 hover:bg-white transition shadow-lg">Referencias</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ÁREA DE CONTENIDO (Páginas dinámicas) -->
+    <main id="contenido-principal" class="flex-1 overflow-y-auto p-4 md:p-8 scroll-smooth">
+        
+        <!-- ================= PÁGINA: INICIO ================= -->
+        <div id="pagina-inicio" class="page-section fade-in max-w-5xl mx-auto text-center pt-10">
+            <span class="text-blue-500 font-bold tracking-widest uppercase text-sm border border-blue-500/30 px-3 py-1 rounded-full bg-blue-500/10">Proyecto de física</span>
+            
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white mt-6 mb-6 leading-tight">
+                Los principios que rigen<br>
+                <span class="text-white">el universo físico</span>
+            </h1>
+            <p class="text-xl text-slate-400 max-w-2xl mx-auto mb-10">
+                Una exploración técnica profunda sobre cómo las tres leyes de Isaac Newton fundamentan la ingeniería moderna, desde la seguridad automotriz hasta la exploración espacial.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left mt-16">
+                <!-- Tarjeta 1 -->
+                <div onclick="navegar('ley1')" class="group p-6 bg-slate-800 rounded-2xl border border-slate-700 hover:border-blue-500 cursor-pointer transition hover:-translate-y-1">
+                    <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center mb-4 text-blue-400 font-bold text-xl group-hover:bg-blue-500 group-hover:text-white transition">1</div>
+                    <h3 class="text-xl font-bold text-white mb-2">Ley de la inercia</h3>
+                    <p class="text-slate-400 text-sm">El principio de resistencia al cambio. Base de los sistemas de seguridad.</p>
+                </div>
+                <!-- Tarjeta 2 -->
+                <div onclick="navegar('ley2')" class="group p-6 bg-slate-800 rounded-2xl border border-slate-700 hover:border-green-500 cursor-pointer transition hover:-translate-y-1">
+                    <div class="w-12 h-12 bg-green-500/20 rounded-lg flex items-center justify-center mb-4 text-green-400 font-bold text-xl group-hover:bg-green-500 group-hover:text-white transition">2</div>
+                    <h3 class="text-xl font-bold text-white mb-2">Ley fundamental</h3>
+                    <p class="text-slate-400 text-sm">F = ma. La ecuación más importante para calcular propulsión y movimiento.</p>
+                </div>
+                <!-- Tarjeta 3 -->
+                <div onclick="navegar('ley3')" class="group p-6 bg-slate-800 rounded-2xl border border-slate-700 hover:border-purple-500 cursor-pointer transition hover:-translate-y-1">
+                    <div class="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center mb-4 text-purple-400 font-bold text-xl group-hover:bg-purple-500 group-hover:text-white transition">3</div>
+                    <h3 class="text-xl font-bold text-white mb-2">Acción y reacción</h3>
+                    <p class="text-slate-400 text-sm">Interacción de fuerzas. El secreto detrás del vuelo aeroespacial.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= PÁGINA: LEY 1 (INERCIA) ================= -->
+        <div id="pagina-ley1" class="page-section hidden fade-in max-w-6xl mx-auto">
+            <header class="border-b border-slate-800 pb-8 mb-8 flex justify-between items-center">
+                <div>
+                    <h2 class="text-4xl font-bold text-white mb-2"><span class="text-blue-500">01.</span> Primera ley de Newton</h2>
+                    <p class="text-xl text-slate-400">El principio de la inercia</p>
+                </div>
+                <button onclick="navegar('inicio')" class="text-sm text-slate-500 hover:text-white">← Volver al inicio</button>
+            </header>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Columna Izquierda: Teoría -->
+                <div class="space-y-6">
+                    <div class="bg-slate-800/50 p-6 rounded-xl border-l-4 border-blue-500">
+                        <h3 class="font-bold text-white text-lg mb-2">Definición técnica</h3>
+                        <p class="text-slate-300">"Todo cuerpo persevera en su estado de reposo o movimiento uniforme y rectilíneo a no ser que sea obligado a cambiar su estado por fuerzas impresas sobre él".</p>
+                    </div>
+                    <p class="text-slate-300 leading-relaxed">
+                        En física, esto significa que la materia tiene una propiedad intrínseca llamada <strong>masa inercial</strong> que se opone a la aceleración. No se requiere fuerza para mantener el movimiento, se requiere fuerza para <em>cambiarlo</em>.
+                    </p>
+                    <div class="bg-blue-900/20 p-6 rounded-xl border border-blue-800">
+                        <h4 class="font-bold text-blue-400 mb-2">Aplicación real: cinturones de seguridad</h4>
+                        <p class="text-sm text-slate-400">
+                            Cuando un vehículo frena bruscamente a 100 km/h, el coche se detiene por los frenos, pero los pasajeros <strong>continúan moviéndose a 100 km/h</strong> debido a la inercia. Los cinturones de seguridad proveen la "fuerza externa" necesaria para desacelerar al pasajero al mismo ritmo que el vehículo, evitando el impacto.
+                        </p>
+                    </div>
+                </div>
+                <!-- Columna Derecha: Visuales -->
+                <div class="space-y-6">
+                    <!-- IMAGEN 1 (BING) -->
+                    <img src="https://th.bing.com/th/id/OIP.5vRo7JFeD2Ckv7y5a7S1fwHaEK?w=318&h=180&c=7&r=0&o=7&dpr=1.7&pid=1.7&rm=3" 
+                         class="w-full rounded-xl shadow-2xl border border-slate-700 hover:scale-[1.02] transition duration-500" alt="Diagrama de inercia">
+                    
+                    <!-- Tarjeta de Dato Técnico (Sin video) -->
+                    <div class="bg-slate-800 p-6 rounded-xl border-l-4 border-blue-500 shadow-lg">
+                        <div class="flex items-center gap-2 mb-3">
+                            <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <h4 class="text-white font-bold text-lg">Dato técnico: masa vs. peso</h4>
+                        </div>
+                        <p class="text-slate-400 text-sm leading-relaxed">
+                            A menudo se confunden, pero <strong>no son lo mismo</strong>. La <strong>masa</strong> es la medida de la inercia (qué tan difícil es mover algo) y es constante en todo el universo. El <strong>peso</strong> es la fuerza con la que la gravedad atrae esa masa.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Flecha Siguiente -->
+            <div class="flex justify-center w-full mt-10">
+                <button onclick="navegar('ley2')" class="group flex flex-col items-center text-slate-500 hover:text-blue-400 transition cursor-pointer">
+                    <span class="text-xs uppercase font-bold tracking-widest mb-2 opacity-0 group-hover:opacity-100 transition-opacity">Siguiente ley</span>
+                    <svg class="w-8 h-8 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- ================= PÁGINA: LEY 2 (DINÁMICA) ================= -->
+        <div id="pagina-ley2" class="page-section hidden fade-in max-w-6xl mx-auto">
+            <header class="border-b border-slate-800 pb-8 mb-8 flex justify-between items-center">
+                <div>
+                    <h2 class="text-4xl font-bold text-white mb-2"><span class="text-green-500">02.</span> Segunda ley de Newton</h2>
+                    <p class="text-xl text-slate-400">La ley fundamental de la dinámica</p>
+                </div>
+                <button onclick="navegar('inicio')" class="text-sm text-slate-500 hover:text-white">← Volver al inicio</button>
+            </header>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Columna Izquierda: Visuales -->
+                <div class="order-2 lg:order-1 space-y-6">
+                    <!-- IMAGEN 2 (BING) -->
+                    <img src="https://th.bing.com/th/id/OIP.l_hzmyqn_umNuuU40rCqPAHaEw?w=256&h=180&c=7&r=0&o=7&dpr=1.7&pid=1.7&rm=3" 
+                         class="w-full rounded-xl shadow-2xl border border-slate-700 hover:scale-[1.02] transition duration-500" alt="Diagrama F=ma">
+                    
+                    <!-- Tarjeta de Desglose de Unidades -->
+                    <div class="bg-slate-800 p-6 rounded-xl border-l-4 border-green-500 shadow-lg">
+                        <div class="flex items-center gap-2 mb-3">
+                            <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                            <h4 class="text-white font-bold text-lg">Unidades (Sistema Internacional)</h4>
+                        </div>
+                        <ul class="text-slate-400 text-sm space-y-2 font-mono">
+                            <li class="flex justify-between border-b border-slate-700 pb-1"><span>Fuerza (F)</span> <span class="text-white">Newtons (N)</span></li>
+                            <li class="flex justify-between border-b border-slate-700 pb-1"><span>Masa (m)</span> <span class="text-white">Kilogramos (kg)</span></li>
+                            <li class="flex justify-between border-b border-slate-700 pb-1"><span>Aceleración (a)</span> <span class="text-white">m/s²</span></li>
+                        </ul>
+                        <div class="mt-3 pt-2 text-xs text-slate-500 text-center">
+                            1 Newton es la fuerza necesaria para acelerar 1 kg a 1 m/s².
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna Derecha: Teoría -->
+                <div class="order-1 lg:order-2 space-y-6">
+                    <div class="text-6xl font-black text-white mb-4">F = m · a</div>
+                    <p class="text-slate-300 leading-relaxed">
+                        Esta ecuación conecta la causa (fuerza) con el efecto (aceleración). Nos dice que para acelerar una masa grande se requiere una fuerza proporcionalmente grande.
+                    </p>
+                    
+                    <div class="bg-green-900/20 p-6 rounded-xl border border-green-800">
+                        <h4 class="font-bold text-green-400 mb-2">Ingeniería: cálculo de propulsión</h4>
+                        <p class="text-sm text-slate-400">
+                            En el diseño de grúas industriales, los ingenieros calculan la fuerza requerida en los cables hidráulicos basándose en la masa de la carga máxima y la velocidad a la que necesitan levantarla (aceleración). Sin esta fórmula, los cables se romperían por exceso de tensión.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Flecha Siguiente -->
+            <div class="flex justify-center w-full mt-10">
+                <button onclick="navegar('ley3')" class="group flex flex-col items-center text-slate-500 hover:text-green-400 transition cursor-pointer">
+                    <span class="text-xs uppercase font-bold tracking-widest mb-2 opacity-0 group-hover:opacity-100 transition-opacity">Siguiente ley</span>
+                    <svg class="w-8 h-8 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- ================= PÁGINA: LEY 3 (ACCIÓN/REACCIÓN) ================= -->
+        <div id="pagina-ley3" class="page-section hidden fade-in max-w-6xl mx-auto">
+            <header class="border-b border-slate-800 pb-8 mb-8 flex justify-between items-center">
+                <div>
+                    <h2 class="text-4xl font-bold text-white mb-2"><span class="text-purple-500">03.</span> Tercera ley de Newton</h2>
+                    <p class="text-xl text-slate-400">Principio de acción y reacción</p>
+                </div>
+                <button onclick="navegar('inicio')" class="text-sm text-slate-500 hover:text-white">← Volver al inicio</button>
+            </header>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Columna Izquierda: Teoría -->
+                <div class="space-y-6">
+                    <div class="bg-slate-800/50 p-6 rounded-xl border-l-4 border-purple-500">
+                        <h3 class="font-bold text-white text-lg mb-2">El principio de interacción</h3>
+                        <p class="text-slate-300">"Si un objeto A ejerce una fuerza sobre un objeto B, entonces el objeto B debe ejercer una fuerza de igual magnitud y dirección opuesta sobre el objeto A".</p>
+                    </div>
+                    
+                    <div class="bg-purple-900/20 p-6 rounded-xl border border-purple-800 mt-6">
+                        <h4 class="font-bold text-purple-400 mb-2">Ingeniería aeroespacial</h4>
+                        <p class="text-sm text-slate-400 mb-2">
+                            Mucha gente cree que los cohetes "se empujan contra el aire", pero en el espacio no hay aire. ¿Cómo funcionan?
+                        </p>
+                        <p class="text-sm text-slate-400">
+                            <strong>Acción:</strong> El motor expulsa gases calientes hacia abajo a velocidades supersónicas.<br>
+                            <strong>Reacción:</strong> Los gases empujan al cohete hacia arriba con la misma fuerza.
+                        </p>
+                    </div>
+                </div>
+                <!-- Columna Derecha: Visuales -->
+                <div class="space-y-6">
+                    <!-- IMAGEN 3 (BING) -->
+                    <img src="https://th.bing.com/th/id/OIP.f64NAZAMROAxDtwC9NBh7QHaGU?w=201&h=180&c=7&r=0&o=7&dpr=1.7&pid=1.7&rm=3" 
+                         class="w-full rounded-xl shadow-2xl border border-slate-700 hover:scale-[1.02] transition duration-500" alt="Diagrama Acción Reacción">
+                    
+                    <!-- Tarjeta de Error Común -->
+                    <div class="bg-slate-800 p-6 rounded-xl border-l-4 border-purple-500 shadow-lg">
+                        <div class="flex items-center gap-2 mb-3">
+                            <svg class="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <h4 class="text-white font-bold text-lg">Error conceptual común</h4>
+                        </div>
+                        <p class="text-slate-400 text-sm italic mb-2">
+                            "Si las fuerzas son iguales y opuestas, ¿por qué no se cancelan?"
+                        </p>
+                        <p class="text-slate-300 text-sm font-semibold">
+                            Respuesta: Porque actúan sobre <span class="text-purple-400">cuerpos diferentes</span>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Flecha Siguiente -->
+            <div class="flex justify-center w-full mt-10">
+                <button onclick="navegar('conclusiones')" class="group flex flex-col items-center text-slate-500 hover:text-purple-400 transition cursor-pointer">
+                    <span class="text-xs uppercase font-bold tracking-widest mb-2 opacity-0 group-hover:opacity-100 transition-opacity">Ir a Conclusiones</span>
+                    <svg class="w-8 h-8 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- ================= PÁGINA: CONCLUSIONES ================= -->
+        <div id="pagina-conclusiones" class="page-section hidden fade-in max-w-4xl mx-auto pt-8">
+            <h2 class="text-4xl font-bold text-white mb-8 border-b border-slate-800 pb-4">Conclusión general</h2>
+            
+            <div class="bg-gradient-to-br from-slate-800 to-slate-900 p-8 md:p-12 rounded-2xl shadow-xl border border-slate-700">
+                <p class="text-slate-300 text-lg leading-relaxed mb-6">
+                    Las leyes de Newton no son meramente principios teóricos confinados a los libros de texto; representan el "sistema operativo" de nuestra realidad física. En el campo de la ingeniería, estas leyes son la herramienta fundamental que nos permite predecir el comportamiento de estructuras, diseñar maquinaria eficiente y garantizar la seguridad en sistemas de transporte.
+                </p>
+                <p class="text-slate-300 text-lg leading-relaxed">
+                    Desde el cálculo de la inercia en un vehículo hasta la propulsión de cohetes espaciales mediante acción y reacción, comprender la interacción entre fuerza, masa y aceleración es el primer paso indispensable para innovar y resolver problemas complejos en el mundo real.
+                </p>
+            </div>
+
+            <div class="flex justify-center w-full mt-10">
+                <button onclick="navegar('referencias')" class="group flex flex-col items-center text-slate-500 hover:text-white transition cursor-pointer">
+                    <span class="text-xs uppercase font-bold tracking-widest mb-2 opacity-0 group-hover:opacity-100 transition-opacity">Ver Referencias</span>
+                    <svg class="w-8 h-8 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- ================= PÁGINA: REFERENCIAS ================= -->
+        <div id="pagina-referencias" class="page-section hidden fade-in max-w-4xl mx-auto pt-8">
+            <h2 class="text-3xl font-bold text-white mb-8 border-b border-slate-800 pb-4">Bibliografía y referencias (APA)</h2>
+            
+            <div class="bg-slate-800 p-8 rounded-xl shadow-lg border border-slate-700">
+                <ul class="space-y-4 text-slate-300 font-mono text-sm">
+                    <li class="pl-4 border-l-2 border-blue-500">
+                        Hewitt, P. G. (2007). <em>Física conceptual</em> (10.ª ed.). Pearson Educación.
+                    </li>
+                    <li class="pl-4 border-l-2 border-blue-500">
+                        Resnick, R., Halliday, D., & Krane, K. S. (2002). <em>Física</em> (Vol. 1, 5.ª ed.). Compañía Editorial Continental.
+                    </li>
+                    <li class="pl-4 border-l-2 border-blue-500">
+                        Tippens, P. E. (2011). <em>Física: conceptos y aplicaciones</em> (7.ª ed.). McGraw-Hill.
+                    </li>
+                    <li class="pl-4 border-l-2 border-blue-500">
+                        Serway, R. A., & Jewett, J. W. (2014). <em>Física para ciencias e ingeniería</em> (Vol. 1, 9.ª ed.). Cengage Learning.
+                    </li>
+                    <li class="pl-4 border-l-2 border-blue-500">
+                        NASA. (2023). <em>Newton's Laws of Motion</em>. Glenn Research Center. Recuperado de nasa.gov.
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="mt-12 text-center text-slate-500 text-sm pb-8">
+                <p class="font-semibold text-white">Desarrollado por Diego Gustavo Hernandez Gonzalez</p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- JAVASCRIPT PARA CAMBIAR DE PÁGINA -->
+    <script>
+        function navegar(paginaId) {
+            // 1. Ocultar todas las secciones
+            const secciones = document.querySelectorAll('.page-section');
+            secciones.forEach(seccion => {
+                seccion.classList.add('hidden');
+            });
+
+            // 2. Mostrar la sección seleccionada
+            const seccionActiva = document.getElementById('pagina-' + paginaId);
+            if (seccionActiva) {
+                seccionActiva.classList.remove('hidden');
+                // Reiniciar la animación
+                seccionActiva.classList.remove('fade-in');
+                void seccionActiva.offsetWidth; // Truco para reiniciar CSS
+                seccionActiva.classList.add('fade-in');
+            }
+            
+            // 3. Scroll arriba
+            document.getElementById('contenido-principal').scrollTop = 0;
+        }
+    </script>
+</body>
+</html>
+```
